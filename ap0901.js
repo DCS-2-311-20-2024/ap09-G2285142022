@@ -2,6 +2,7 @@
 // 応用プログラミング 第9,10回 自由課題 (ap0901.js)
 // G38400-2023 拓殖太郎
 //
+//障害物を避けるゲーム
 "use strict"; // 厳格モード
 
 // ライブラリをモジュールとして読み込む
@@ -28,16 +29,34 @@ function init() {
 
   // カメラの作成
   const camera = new THREE.PerspectiveCamera(
-    50, window.innerWidth/window.innerHeight, 0.1, 1000);
-  camera.position.set(1,2,3);
-  camera.lookAt(0,0,0);
+    50, window.innerWidth / window.innerHeight, 0.1, 1000
+  );
+  camera.position.set(0, 5, 10);
+  camera.lookAt(0, 0, 0);
 
   // レンダラの設定
   const renderer = new THREE.WebGLRenderer();
-  renderer.setSize(window.innerWidth, innerHeight);
-    document.getElementById("output").appendChild(renderer.domElement);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.getElementById("output").appendChild(renderer.domElement);
 
-  // 描画処理
+  const textureLoader = new THREE.TextureLoader();
+  const skyTexture = textureLoader.load("sky.ico", () => {
+    scene.background = skyTexture;
+  });
+
+  const ground = new THREE.Mesh(
+    new THREE.PlaneGeometry(20, 10),
+    new THREE.MeshBasicMaterial({ color: 0x228b22 })
+  );
+  ground.rotation.x = -Math.PI / 2;
+  scene.add(ground);
+
+  const player = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0x0000ff })
+  );
+  player.position.set(0, 0.5, 0);
+  scene.add(player);
 
   // 描画関数
   function render() {
@@ -45,7 +64,6 @@ function init() {
     axes.visible = param.axes;
     // 描画
     renderer.render(scene, camera);
-    // 次のフレームでの描画要請
     requestAnimationFrame(render);
   }
 
