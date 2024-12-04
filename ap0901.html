@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title> 応用プログラミング 第9,10回 自由課題 (ap0901)
-		</title>
-		<style>
-		  body { margin: 0; background-color: #23a3a3; color: gold}
-
-		</style>
-	</head>
-	<body>
-		<div id="output">G285142022村田周哉</div>
-		<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
-		<script type="importmap"> {
-			"imports" : {
-				"three" : "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
-				"three/addons" : "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/Addons.js",
-				"ili-gui": "https://cdn.jsdelivr.net/npm/lil-gui@0.19/+esm"
-			}
-		} </script>
-		<script type="module" src="ap0901.js"></script>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <title> 応用プログラミング 第9,10回 自由課題 (ap0901)</title>
+    <style>
+      body { margin: 0; background-color: #23a3a3; color: gold; font-size: 18px; }
+      #status { position: fixed; top: 10px; left: 10px; }
+      #game-over { text-align: center; font-size: 36px; color: red; display: none; }
+    </style>
+  </head>
+  <body>
+    <div id="output">G285142022 村田周哉</div>
+    <div id="status">
+      Score: <span id="score">0</span> | Lives: <span id="lives">3</span>
+    </div>
+    <div id="game-over">GAME OVER</div>
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+    <script type="importmap"> {
+      "imports" : {
+        "three" : "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons" : "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/Addons.js",
+        "ili-gui": "https://cdn.jsdelivr.net/npm/lil-gui@0.19/+esm"
+      }
+    } </script>
+    <script type="module" src="ap0901.js"></script>
+  </body>
 </html>
